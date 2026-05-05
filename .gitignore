@@ -1,0 +1,24 @@
+# 运行时数据（用户项目内容，不提交）
+.novel-weaver/
+novels/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Build
+dist/
+build/
