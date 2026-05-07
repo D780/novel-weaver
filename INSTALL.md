@@ -1,0 +1,264 @@
+# NovelWeaver 安装指南
+
+> 这是一个**技能仓库**，包含完整的网文创作技能定义，支持多种主流 AI IDE。
+
+---
+
+## 快速安装
+
+选择你使用的 AI IDE，按对应方式安装。
+
+### 通用方式：复制安装（适用于所有 IDE）
+
+将整个 `skill/` 目录复制到对应 IDE 的技能/规则目录中：
+
+```bash
+# macOS / Linux
+cp -r skill/* <目标路径>/
+
+# Windows PowerShell
+Copy-Item -Path "skill\*" -Destination "<目标路径>" -Recurse
+```
+
+---
+
+## 各 IDE 安装方式
+
+| IDE | 类型 | 目标路径 |
+|-----|------|----------|
+| **Trae** | 技能 | `.trae/skills/novel-weaver/` |
+| **Claude Code** | 技能 | `.claude/skills/novel-weaver/` |
+| **Cursor** | 规则 | `.cursor/rules/` |
+| **GitHub Copilot (VS Code)** | 自定义指令 | `.github/copilot-instructions.md` |
+| **Cline** | 规则 | `.clinerules/` 或 `.clinerules` 文件 |
+| **Roo Code** | 规则 | `.clinerules` 或 `.clinerules-[mode]` |
+| **Continue** | 规则 | `.continue/rules/` |
+| **OpenCode** | 技能 | `.opencode/skills/novel-weaver/` 或 `.claude/skills/novel-weaver/` |
+| **Windsurf** | 规则 | `.windsurfrules` |
+
+---
+
+### Trae（推荐）
+
+```bash
+# 项目内安装
+cp -r skill/* .trae/skills/novel-weaver/
+
+# 全局安装（所有项目可用）
+cp -r skill/ ~/.trae/skills/novel-weaver/
+```
+
+安装后，在 Trae 聊天框输入 `/nw` 即可触发技能。
+
+---
+
+### Claude Code
+
+```bash
+# 项目内安装
+cp -r skill/ .claude/skills/novel-weaver/
+
+# 全局安装
+cp -r skill/ ~/.claude/skills/novel-weaver/
+```
+
+Claude Code 的 Skill 支持**三级渐进加载**：
+1. 启动时只读取 `name` + `description`（~100 token）
+2. 需要时读取 `SKILL.md` 全文（<5000 token）
+3. 按需加载 `references/`、`templates/`、`scripts/`
+
+安装后说 "帮我写小说" 或输入 `/nw init` 即可触发。
+
+---
+
+### Cursor
+
+Cursor 使用的是 `.mdc`（Markdown with Cursor frontmatter）规则文件，需要将 NovelWeaver 的内容转换为规则格式。
+
+```bash
+mkdir -p .cursor/rules
+```
+
+推荐创建以下文件：
+
+**`novel-writing.mdc`**（主规则）：
+```
+---
+description: 网文写作技能，包含大纲生成、文风系统、节奏控制、质量审计
+globs: **/*.md
+---
+
+# NovelWeaver 网文写作规则
+
+当用户提到写小说、创作小说、写章节、写大纲时，使用以下指令体系：
+
+- `/nw init` - 初始化小说项目
+- `/nw write` - 写/续写章节
+- `/nw review` - 审查质量
+- `/nw memory` - 查看/管理设定
+- `/nw plan` - 生成大纲
+- `/nw act` - 下一幕剧情规划
+- `/nw style` - 切换文风
+
+完整规则请参考 skill/SKILL.md 和 references/ 目录下的文档。
+```
+
+---
+
+### GitHub Copilot（VS Code）
+
+```bash
+mkdir -p .github
+```
+
+创建 **`.github/copilot-instructions.md`**：
+
+```markdown
+# NovelWeaver - 网文写作规则
+
+当用户提到写小说、创作内容时，使用以下指令体系：
+
+- `/nw init` - 初始化项目（6问引导：情绪标签→题材→简介→主角→冲突→章节数）
+- `/nw write` - 写章节（自动触发黄金开篇、文风应用、质量审查、字数检查）
+- `/nw review` - 质量审计（33维度：AI味、一致性、节奏、追读力）
+- `/nw memory` - 管理设定（角色档案、世界状态、伏笔表）
+- `/nw plan` - 生成大纲（三幕结构、分卷规划）
+- `/nw act` - 幕规划（6条分支走向：A主线/B危机/C支线/D缓冲/E回环/F颠覆）
+
+详细规则见 skill/ 目录。
+```
+
+Copilot 的指令是**全局被动生效**的，当聊天内容匹配时自动应用。
+
+---
+
+### Cline / Roo Code
+
+**方式一：目录模式（推荐，多文件）**
+
+```bash
+cp -r skill/ .clinerules/novel-weaver/
+```
+
+**方式二：单文件模式**
+
+将 `SKILL.md` 的内容直接复制到项目根目录的 `.clinerules` 文件中（如已存在则追加内容）。
+
+Cline 会自动检测 `.clinerules` 目录或文件，也兼容 `.cursorrules`、`.windsurfrules`、`AGENTS.md` 等格式。
+
+---
+
+### Continue
+
+```bash
+mkdir -p .continue/rules
+cp -r skill/ .continue/rules/novel-weaver/
+```
+
+或使用 YAML 配置方式，在 `config.yaml` 中添加：
+
+```yaml
+rules:
+  - uses: file://.continue/rules/novel-weaver/
+```
+
+Continue 支持 `alwaysApply: true` 让规则全局生效，或使用 `globs: "**/*.md"` 限定文件类型。
+
+---
+
+### OpenCode
+
+```bash
+# OpenCode 原生路径
+mkdir -p .opencode/skills/novel-weaver
+cp -r skill/* .opencode/skills/novel-weaver/
+
+# 或 Claude 兼容路径
+cp -r skill/ .claude/skills/novel-weaver/
+```
+
+OpenCode 同时搜索 `.opencode/skills/`、`.claude/skills/`、`.agents/skills/` 三个路径。
+
+---
+
+## 符号链接（开发调试模式）
+
+如果你要开发或调试这个技能，建议用符号链接指向仓库：
+
+```bash
+# 任意 IDE
+ln -s $(pwd)/skill /path/to/project/.<ide>/skills/novel-weaver
+
+# Windows (管理员权限)
+mklink /D .trae\skills\novel-weaver d:\AITEST\novel-weaver\skill
+```
+
+这样修改仓库代码后会立即生效，无需重新复制。
+
+---
+
+## 安装验证
+
+安装完成后，在 IDE 聊天框输入：
+
+```
+/nw help
+```
+
+如果 AI 返回 NovelWeaver 的指令帮助列表，说明安装成功。
+
+---
+
+## 目录结构说明
+
+```
+skill/                          # 技能根目录（整个复制到目标路径）
+├── SKILL.md                    # 主技能文件（YAML frontmatter + Markdown）
+├── README.md                   # 技能使用说明
+├── references/                 # 参考文档（17个）
+│   ├── genre-rules.md          # 37种题材写作规则
+│   ├── audit-dimensions.md     # 33维度审计系统
+│   ├── anti-ai-patterns.md     # 反AI味指南
+│   ├── pacing-analysis.md      # 节奏分析系统
+│   ├── emotion-curve.md        # 情绪曲线系统
+│   ├── golden-opening.md       # 黄金开篇锻造术
+│   ├── act-guidance.md         # 幕引导系统
+│   └── ...
+├── styles/                     # 文风库（22位作者，7大流派）
+│   ├── author-styles.md
+│   └── authors/
+├── templates/                  # 模板文件（14个）
+│   ├── chapter.md
+│   ├── outline.md
+│   ├── act-plan.md
+│   └── ...
+└── scripts/                    # Python 预处理脚本（4个）
+    ├── README.md
+    ├── check_wordcount.py      # 字数检查
+    ├── chapter_info.py          # 单章结构化提取（节省 ~90% token）
+    └── volume_batch.py          # 卷级批量汇总
+```
+
+---
+
+## 常见问题
+
+### Q: 安装后 AI 没识别到技能？
+
+A: 检查以下几点：
+1. 确认路径正确（注意是 `skills/novel-weaver/` 不是直接 `skills/`）
+2. 确认 `SKILL.md` 存在于目录根
+3. 重启 IDE 会话
+4. 输入 `/nw help` 手动触发
+
+### Q: 可以全局安装吗？
+
+A: 可以。全局路径一般为 `~/.<ide>/skills/novel-weaver/`，所有项目都能使用。
+
+### Q: 脚本需要额外安装依赖吗？
+
+A: 不需要。所有 Python 脚本只使用标准库（`os`、`re`、`json`、`argparse`、`pathlib`）。
+
+### Q: 这个技能仓库和 MCP 有什么区别？
+
+A: MCP 是外部服务接口协议，需要运行额外进程；Skill 是纯 Markdown 指令包，零依赖、零配置、无需启动，开箱即用。

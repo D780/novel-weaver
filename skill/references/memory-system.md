@@ -192,7 +192,7 @@ AI 在检索时应按以下优先级顺序：
 优先级 2：大纲文件（novels/outline.md、volume-XX/plan.md）→ 剧情目标
 优先级 3：前文摘要（.novel-weaver/summaries/）→ 最近剧情回顾
 优先级 4：相关章节（novels/volume-XX/chapters/）→ 细节参考
-优先级 5：文风库（.trae/skills/novel-weaver/styles/）→ 风格参考
+优先级 5：文风库（styles/）→ 风格参考
 ```
 
 ### 指令驱动的检索矩阵

@@ -9,6 +9,18 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+.trae/
+.claude/
+.cursor/
+.opencode/
+.agents/
+
+# AI IDE rules (when copied from skill/)
+.clinerules/
+.clinerules
+.cursorrules
+.windsurfrules
+.continue/
 
 # Python
 __pycache__/
@@ -22,3 +34,7 @@ npm-debug.log*
 # Build
 dist/
 build/
+
+# Environment
+.env
+.env.local

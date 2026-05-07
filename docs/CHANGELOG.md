@@ -4,6 +4,70 @@
 
 格式参考 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [Unreleased]
+
+### 新增
+- 3个新Python脚本：hook_report.py（钩子密度报告）、consistency_scan.py（一致性扫描）、style_check.py（AI味检测）
+- nw_utils.py 公共工具模块，消除脚本间重复代码
+- INSTALL.md 多IDE安装指南（9种AI IDE）
+- 多IDE兼容支持（Trae/Claude/Cursor/Cline/Roo/Copilot/Continue/OpenCode/Windsurf）
+
+### 修复
+- SKILL.md 指令层级统一：核心指令7个（含plan/act），扩展指令5个，消除重复
+- usage-guide.md 分支示例从4条更新为6条（A-F）
+- constitution.md 和 memory-system.md 中 `.trae/` 路径泛化为相对路径
+- .gitignore 增加各IDE规则目录排除
+
+### 优化
+- 脚本代码去重：`extract_characters`、`detect_hook`、`chapter_sort_key`、`clean_markdown` 等重复函数统一提取到 nw_utils.py
+- 脚本体积缩减：`chapter_info.py` 从167行→61行，`check_wordcount.py` 从219行→98行
+- skill/README.md 重写为技能级快速参考
+- 根 README.md 全面更新到 v1.5.0
+- scripts/README.md 增加公共模块说明和6个脚本的完整说明
+
+---
+
+## [1.5.0] - 2026-05
+
+### 新增
+- 幕系统完善：6条分支走向（A主线/B危机/C支线/D缓冲/E回环/F颠覆）
+- 偏离影响分析（🟢🟡🟠🔴四级）
+- 大幕分段机制、幕大纲、AI推荐、可调章节数
+- Python 预处理脚本：chapter_info.py（单章结构化提取）、volume_batch.py（卷级批量汇总）
+- 每次写入后强制更新链：写作→审查→字数检查→更新大纲→更新记忆→摘要→进度
+- 多 IDE 兼容支持（Trae/Claude/Cursor/Cline/Roo/Copilot/Continue/OpenCode/Windsurf）
+- INSTALL.md 多 IDE 安装指南
+- 3个新脚本：hook_report.py、consistency_scan.py、style_check.py
+
+### 修复
+- 字符提取过滤：修复代词+动词模式导致的噪音识别
+- 工作流程整合：脚本在 /nw write 和 /nw act 时自动运行
+- SKILL.md 指令层级统一（核心7个，扩展5个）
+- .gitignore 增加各 IDE 规则目录排除
+
+---
+
+## [1.4.0] - 2026-05
+
+### 新增
+- 情绪标签系统：6大情绪标签对应不同节奏模板
+- 黄金开篇锻造术：写第一章时自动生成3版开篇+避雷针检查
+- 情绪曲线"压-小扬-压-爆"3章循环
+- content-expansion.md：7种内容扩充技巧
+- dialogue-writing.md：对话写作规范
+- plot-structures.md：情节结构模板
+- emotion-curve.md：情绪曲线系统
+- golden-opening.md：黄金开篇参考文档
+- Python字数检查脚本（check_wordcount.py）
+
+### 优化
+- 情绪曲线与节奏分析连接
+- 统一init流程6问顺序
+- 修正黄金开篇触发时机
+- 去除重复内容
+
+---
+
 ## [1.3.0] - 2026-05
 
 ### 重构

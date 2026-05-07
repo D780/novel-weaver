@@ -1,91 +1,109 @@
 # NovelWeaver - 全能网文写作助手
 
 > 整合业界优秀网文写作工具理念，通过简洁指令+自然语言，帮你从零创作高质量长篇小说。
+> **这是一个技能仓库**，兼容多种主流 AI IDE。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.3.0-blue.svg)](skill/SKILL.md)
+[![Version](https://img.shields.io/badge/version-1.5.0-blue.svg)](skill/SKILL.md)
 
 ## 核心能力
 
 - **智能创作引导** - 从书名、题材到角色设定，AI 引导你完成创作准备
 - **22位作者文风库** - 覆盖搞笑、热血、文青、严谨等 7 大流派，支持智能推荐
+- **幕系统** - 卷内剧情弧规划，6条分支走向（A主线/B危机/C支线/D缓冲/E回环/F颠覆）
 - **33维度质量审计** - AI味检测、一致性检查、追读力分析全覆盖
 - **RAG 记忆增强** - 三重记忆架构，自动检索设定、追踪伏笔、更新世界状态
 - **创意约束系统** - 三轴混搭、反套路触发器、镜像对抗防重复
-- **自动节奏控制** - S1-S5五级节奏评级，卷级节奏曲线分析
+- **自动节奏控制** - S1-S5五级节奏评级 + 情绪曲线"压-小扬-压-爆"双轨
+- **Token 优化** - Python 预处理脚本，AI 读 JSON 代替全文，节省 ~90% token
 - **阶段总结** - 每10章/50章/每卷自动总结，记录剧情进展和伏笔状态
 
 ## 快速开始
 
-### 前置条件
-
-- 使用 Trae IDE 或支持 Skills 的 AI 编程助手
-
 ### 安装方式
 
-#### 方式1：直接复制（推荐）
+详细安装指南请查阅 [INSTALL.md](INSTALL.md)，这里列出常用方式：
 
-将 `skill/` 目录复制到你项目的 `.trae/skills/` 目录下：
-
-```bash
-cp -r skill/* /path/to/your/project/.trae/skills/novel-weaver/
-```
-
-Windows PowerShell：
-
-```powershell
-Copy-Item -Path "skill\*" -Destination ".trae\skills\novel-weaver\" -Recurse
-```
-
-#### 方式2：符号链接（开发模式）
-
-创建符号链接，方便开发调试：
+#### 方式1：Trae（推荐）
 
 ```bash
-ln -s $(pwd)/skill /path/to/your/project/.trae/skills/novel-weaver
+cp -r skill/ .trae/skills/novel-weaver/
 ```
+
+#### 方式2：Claude Code
+
+```bash
+cp -r skill/ .claude/skills/novel-weaver/
+```
+
+#### 方式3：Cline / Roo Code
+
+```bash
+cp -r skill/ .clinerules/novel-weaver/
+```
+
+#### 其他 IDE
+
+| IDE | 路径 |
+|-----|------|
+| Cursor | `.cursor/rules/`（需转换为 .mdc 格式） |
+| GitHub Copilot | `.github/copilot-instructions.md` |
+| Continue | `.continue/rules/` |
+| OpenCode | `.opencode/skills/novel-weaver/` |
+| Windsurf | `.windsurfrules` |
+
+完整安装步骤、验证方法和常见问题见 [INSTALL.md](INSTALL.md)
 
 ### 使用
 
-在你的小说项目中，直接使用以下指令开始创作：
+安装成功后，在 IDE 聊天框输入以下指令开始创作：
 
 ```
 /nw init 开始写小说
 ```
 
 AI 会引导你完成：
-1. 基础信息：书名、题材、一句话简介
-2. 主角设定：姓名、身份、性格、核心目标
-3. 文风选择：根据题材自动推荐
-4. 故事基调：轻松/严肃/热血/悲壮
+1. 情绪标签选择（打脸爽文/极致虐恋/爆笑反套路/悬疑惊悚/治愈甜宠/脑洞大开）
+2. 题材选择
+3. 一句话简介
+4. 主角设定（姓名、核心反差点）
+5. 核心冲突
+6. 章节数与文风选择
 
 ## 指令速查
 
 | 指令 | 说明 |
 |------|------|
-| `/nw init` | 开始写小说 |
+| `/nw init` | 开始写小说（6问引导） |
 | `/nw write` | 写/续写章节 |
 | `/nw review` | 审查质量 |
 | `/nw memory` | 查看/管理设定 |
 | `/nw plan` | 生成大纲 |
+| `/nw act` | 下一幕剧情规划（6条分支） |
 | `/nw style` | 切换文风 |
 | `/nw help` | 帮助信息 |
+| `/nw expand` | 扩写章节 |
+| `/nw stats` | 字数统计 |
+| `/nw inspire` | 灵感建议 |
+| `/nw summary` | 阶段总结 |
 
-完整指令体系详见 [SKILL.md](skill/SKILL.md)
+完整指令体系（三级：5核心+7扩展+7高级子指令）详见 [SKILL.md](skill/SKILL.md)
 
 ## 项目结构
 
 ```
 .
-├── skill/                  # 技能核心（安装到 .trae/skills/）
+├── skill/                  # 技能核心（安装到对应 IDE 的技能目录）
 │   ├── SKILL.md            # 主技能文件
-│   ├── references/         # 参考文档（11个）
-│   ├── styles/             # 文风库（22位作者）
-│   ├── templates/          # 模板文件（13个）
-│   └── scripts/            # 脚本工具（5个）
+│   ├── README.md           # 技能使用说明
+│   ├── references/         # 参考文档（17个）
+│   ├── styles/             # 文风库（22位作者，7大流派）
+│   ├── templates/          # 模板文件（14个）
+│   └── scripts/            # 脚本工具（13个文件，公共模块+12个脚本）
 ├── docs/                   # 项目文档
 │   ├── CHANGELOG.md        # 版本历史
 │   └── CONTRIBUTING.md     # 贡献指南
+├── INSTALL.md              # 多 IDE 安装指南
 ├── LICENSE                 # MIT 许可证
 └── README.md               # 项目说明
 ```
@@ -114,6 +132,8 @@ AI 会引导你完成：
 | 1.1.0 | 2026-04 | RAG 检索增强 |
 | 1.2.0 | 2026-04 | 指令精简 - 三级指令体系 |
 | 1.3.0 | 2026-05 | 结构优化 - 消除重复、文风库分类 |
+| 1.4.0 | 2026-05 | 实战增强 - 情绪标签系统、黄金开篇、情绪曲线、内容扩充技巧 |
+| 1.5.0 | 2026-05 | 幕系统 + 脚本 - 6条分支走向、Python预处理脚本、多IDE兼容 |
 
 完整更新记录见 [CHANGELOG](docs/CHANGELOG.md)
 
