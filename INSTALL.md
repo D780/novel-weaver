@@ -1,4 +1,4 @@
-# NovelWeaver 安装指南
+﻿# NovelWeaver 安装指南
 
 > 这是一个**技能仓库**，包含完整的网文创作技能定义，支持多种主流 AI IDE。
 
@@ -48,7 +48,7 @@ cp -r skill/* .trae/skills/novel-weaver/
 cp -r skill/ ~/.trae/skills/novel-weaver/
 ```
 
-安装后，在 Trae 聊天框输入 `/nw` 即可触发技能。
+安装后，在 Trae 聊天框输入 `/novel-weaver` 即可触发技能。
 
 ---
 
@@ -67,7 +67,7 @@ Claude Code 的 Skill 支持**三级渐进加载**：
 2. 需要时读取 `SKILL.md` 全文（<5000 token）
 3. 按需加载 `references/`、`templates/`、`scripts/`
 
-安装后说 "帮我写小说" 或输入 `/nw init` 即可触发。
+安装后说 "帮我写小说" 或输入 `/novel-weaver init` 即可触发。
 
 ---
 
@@ -92,13 +92,13 @@ globs: **/*.md
 
 当用户提到写小说、创作小说、写章节、写大纲时，使用以下指令体系：
 
-- `/nw init` - 初始化小说项目
-- `/nw write` - 写/续写章节
-- `/nw review` - 审查质量
-- `/nw memory` - 查看/管理设定
-- `/nw plan` - 生成大纲
-- `/nw act` - 下一幕剧情规划
-- `/nw style` - 切换文风
+- `/novel-weaver init` - 初始化小说项目
+- `/novel-weaver write` - 写/续写章节
+- `/novel-weaver review` - 审查质量
+- `/novel-weaver memory` - 查看/管理设定
+- `/novel-weaver plan` - 生成大纲
+- `/novel-weaver act` - 下一幕剧情规划
+- `/novel-weaver style` - 切换文风
 
 完整规则请参考 skill/SKILL.md 和 references/ 目录下的文档。
 ```
@@ -118,12 +118,12 @@ mkdir -p .github
 
 当用户提到写小说、创作内容时，使用以下指令体系：
 
-- `/nw init` - 初始化项目（6问引导：情绪标签→题材→简介→主角→冲突→章节数）
-- `/nw write` - 写章节（自动触发黄金开篇、文风应用、质量审查、字数检查）
-- `/nw review` - 质量审计（33维度：AI味、一致性、节奏、追读力）
-- `/nw memory` - 管理设定（角色档案、世界状态、伏笔表）
-- `/nw plan` - 生成大纲（三幕结构、分卷规划）
-- `/nw act` - 幕规划（6条分支走向：A主线/B危机/C支线/D缓冲/E回环/F颠覆）
+- `/novel-weaver init` - 初始化项目（6问引导：情绪标签→题材→简介→主角→冲突→章节数）
+- `/novel-weaver write` - 写章节（自动触发黄金开篇、文风应用、质量审查、字数检查）
+- `/novel-weaver review` - 质量审计（33维度：AI味、一致性、节奏、追读力）
+- `/novel-weaver memory` - 管理设定（角色档案、世界状态、伏笔表）
+- `/novel-weaver plan` - 生成大纲（三幕结构、分卷规划）
+- `/novel-weaver act` - 幕规划（6条分支走向：A主线/B危机/C支线/D缓冲/E回环/F颠覆）
 
 详细规则见 skill/ 目录。
 ```
@@ -202,7 +202,7 @@ mklink /D .trae\skills\novel-weaver d:\AITEST\novel-weaver\skill
 安装完成后，在 IDE 聊天框输入：
 
 ```
-/nw help
+/novel-weaver help
 ```
 
 如果 AI 返回 NovelWeaver 的指令帮助列表，说明安装成功。
@@ -249,7 +249,7 @@ A: 检查以下几点：
 1. 确认路径正确（注意是 `skills/novel-weaver/` 不是直接 `skills/`）
 2. 确认 `SKILL.md` 存在于目录根
 3. 重启 IDE 会话
-4. 输入 `/nw help` 手动触发
+4. 输入 `/novel-weaver help` 手动触发
 
 ### Q: 可以全局安装吗？
 

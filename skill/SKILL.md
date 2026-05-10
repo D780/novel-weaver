@@ -430,4 +430,4 @@ novels/                     # 小说正文（用户直接编辑）
 
 ***
 
-*NovelWeaver v1.6.0 - 指令* *`/nw`* *+ 语义，用说话的方式写小说*
+*NovelWeaver v1.6.0 - 指令* *`/novel-weaver`* *+ 语义，用说话的方式写小说*

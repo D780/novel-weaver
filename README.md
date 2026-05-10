@@ -1,4 +1,4 @@
-# NovelWeaver - 全能网文写作助手
+﻿# NovelWeaver - 全能网文写作助手
 
 > 整合业界优秀网文写作工具理念，通过简洁指令+自然语言，帮你从零创作高质量长篇小说。
 > **这是一个技能仓库**，兼容多种主流 AI IDE。
@@ -59,7 +59,7 @@ cp -r skill/ .clinerules/novel-weaver/
 安装成功后，在 IDE 聊天框输入以下指令开始创作：
 
 ```
-/nw init 开始写小说
+/novel-weaver init 开始写小说
 ```
 
 AI 会引导你完成：
@@ -74,18 +74,18 @@ AI 会引导你完成：
 
 | 指令 | 说明 |
 |------|------|
-| `/nw init` | 开始写小说（6问引导） |
-| `/nw write` | 写/续写章节 |
-| `/nw review` | 审查质量 |
-| `/nw memory` | 查看/管理设定 |
-| `/nw plan` | 生成大纲 |
-| `/nw act` | 下一幕剧情规划（6条分支） |
-| `/nw style` | 切换文风 |
-| `/nw help` | 帮助信息 |
-| `/nw expand` | 扩写章节 |
-| `/nw stats` | 字数统计 |
-| `/nw inspire` | 灵感建议 |
-| `/nw summary` | 阶段总结 |
+| `/novel-weaver init` | 开始写小说（6问引导） |
+| `/novel-weaver write` | 写/续写章节 |
+| `/novel-weaver review` | 审查质量 |
+| `/novel-weaver memory` | 查看/管理设定 |
+| `/novel-weaver plan` | 生成大纲 |
+| `/novel-weaver act` | 下一幕剧情规划（6条分支） |
+| `/novel-weaver style` | 切换文风 |
+| `/novel-weaver help` | 帮助信息 |
+| `/novel-weaver expand` | 扩写章节 |
+| `/novel-weaver stats` | 字数统计 |
+| `/novel-weaver inspire` | 灵感建议 |
+| `/novel-weaver summary` | 阶段总结 |
 
 完整指令体系（三级：5核心+7扩展+7高级子指令）详见 [SKILL.md](skill/SKILL.md)
 

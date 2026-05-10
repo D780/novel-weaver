@@ -1,4 +1,4 @@
-﻿# NovelWeaver - 全能网文写作助手
+# NovelWeaver - 全能网文写作助手
 
 > 技能详细说明请查阅 [SKILL.md](SKILL.md)
 
@@ -55,4 +55,4 @@
 
 ---
 
-*NovelWeaver v1.5.0 - 指令 `/nw` + 语义,用说话的方式写小说*
+*NovelWeaver v1.6.0 - 指令 `/novel-weaver` + 语义,用说话的方式写小说*
